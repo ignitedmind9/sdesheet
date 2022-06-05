@@ -1,0 +1,22 @@
+void findSubset(int i,int sum,vector<int> &num, vector<int> &res)
+{    
+    if(i==num.size())
+    {
+        res.push_back(sum);
+        return;
+    }
+
+    sum+=num[i];
+    findSubset(i+1,sum,num,res);
+   
+    sum-=num[i];
+    findSubset(i+1,sum,num,res);
+}
+vector<int> subsetSum(vector<int> &num)
+{
+    vector<int> res;
+    int i=0, sum=0;
+    findSubset(i,sum,num,res);
+    sort(res.begin(), res.end());
+    return res;
+}
