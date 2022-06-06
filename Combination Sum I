@@ -1,0 +1,25 @@
+void findSum(int i,int sum,vector<int> arr, int n, int k, vector<int> &res, vector<vector<int>> &result)
+{
+    if(i==n)
+    {
+        if(sum==k)
+        {
+            result.push_back(res);
+        }
+        return;
+    }
+    sum+=arr[i];
+    res.push_back(arr[i]);
+    findSum(i+1,sum,arr,n,k,res,result);
+    sum-=arr[i];
+    res.pop_back();
+    findSum(i+1,sum,arr,n,k,res,result);
+}
+vector<vector<int>> findSubsetsThatSumToK(vector<int> arr, int n, int k)
+{
+    int i=0, sum=0;
+    vector<int> res;
+    vector<vector<int>> result;
+    findSum(i, sum, arr, n, k, res, result);
+    return result;
+}
