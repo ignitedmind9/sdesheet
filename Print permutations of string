@@ -1,0 +1,33 @@
+
+void getPermutations(string &ds,int *hash,string &s,int n, vector<string> &result)
+{
+    if(ds.length()==n)
+    {
+        result.push_back(ds);
+        return;
+    }
+    for(int k=0;k<n;k++)
+    {
+        if(hash[k]==0)
+        {
+            hash[k]=1;
+            ds.push_back(s[k]);
+            getPermutations(ds,hash,s,n ,result);
+            hash[k]=0;
+            ds.pop_back();
+        }
+    }
+}
+vector<string> findPermutations(string &s) 
+{
+    vector<string> result;
+    int n=s.length();
+    string ds;
+    int hash[n];
+    for(int i=0;i<n; i++)
+        hash[i]=0;
+ 
+     getPermutations(ds,hash,s,n ,result);
+    return result;
+    
+}
