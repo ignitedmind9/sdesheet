@@ -1,0 +1,49 @@
+class Queue {
+public:
+    int cursize;
+    int Front;
+    int rear;
+    int *arr;
+    int n;
+    Queue() {
+        n=1000001;
+        cursize=0;
+        Front=0;
+        rear=0;
+        arr= new int[n];
+    }
+
+    /*----------------- Public Functions of Queue -----------------*/
+
+    bool isEmpty() {
+        return (cursize==0?true:false);
+    }
+
+    void enqueue(int data) {
+        arr[rear%n] = data;
+        rear++;
+        cursize++;
+    }
+
+    int dequeue() 
+    {
+        if(cursize==0)
+            return -1;
+        if(Front==rear)
+        {
+       
+            return -1;
+        }
+        int x = arr[Front%n];
+        arr[Front%n]=-1;
+        Front++;
+        cursize--;
+        return x;
+    }
+
+    int front() {
+        if(isEmpty())
+            return -1;
+        return arr[Front%n];
+    }
+};
