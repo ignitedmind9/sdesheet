@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+int minimumEnergy(int i, vector<int> &arr, int n)
+{
+    if(i==0)
+        return 0;
+    int left = minimumEnergy(i-1, arr, n)+abs(arr[i]-arr[i-1]);
+    int right = INT_MAX;
+    if(i>1)
+        right = minimumEnergy(i-2, arr, n)+ abs(arr[i]-arr[i-2]);
+    return min(left,right);
+}
+
+int frogJump(int n, vector<int> &arr)
+{
+    int i=n-1;
+    return minimumEnergy(i, arr, n);
+}
