@@ -64,3 +64,34 @@ int frogJump(int n, vector<int> &heights)
 }
 
 ==========================================================================
+
+Tabulation 
+
+#include<bits/stdc++.h>
+
+int frogJump(int n, vector<int> &arr)
+{
+   int k=2;
+    vector<int> dp(n, 0);
+    dp[0]=0;
+    for(int i=1;i<n;i++)
+    {
+        int energy = INT_MAX;
+        for(int j=1;j<=k;j++)
+        {
+       
+            if(i-j>=0)
+            {
+                int left = dp[i-j]+abs(arr[i]-arr[i-j]);
+    
+                energy= min(left, energy);
+            }
+        dp[i]=energy;
+        }
+    }
+    return dp[n-1];
+    
+    
+}
+
+======================================================================
